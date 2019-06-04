@@ -5,17 +5,6 @@
 #include "list.h"
 #include "file_manager.h"
 
-
-char *tolowerstring(char *string)
-{
-    int a = strlen(string);
-    char *newstring;
-    for (int i = 0; i < a; i++) {newstring[i] = tolower(string[i]);
-    printf("%c-%c",newstring[i], string[i]);
-    }
-    return initStringField(newstring);
-}
-
 void searchId(List *list, int id)
 {
     WoWMounts *current = list->head;
@@ -59,21 +48,11 @@ void searchName(List *list, char *name)
 
     int n = strlen(name);
     char cutword[1000];
-    printf("jopa");
-    char *first;
-    printf("jopa");
-    char *second;
-    printf("jopa");
 
     while (current != NULL)
     {
-        printf("jopa");
-         strncpy(cutword ,current->name, n);
-         printf("jopa");
-         first = tolowerstring(cutword);
-         printf("jopa");
-         second = tolowerstring(name);
-        if (strcmp(first, second) == 0)
+        strncpy(cutword ,current->name, n);
+        if (strcmp(cutword, name) == 0)
         {
             printf("Id: %d\nCost: %d\nName: %s\nQuest: %s\nAchievement: %s\nCharacter: %s\nDrop chance: %lf\nAddition: %s\nLocation: %s\nPercent of holders: %lf\nSubjective rate: %d\n\n",
                    current->id,current->cost, current->name, current->quest, current->achieve, current->drop, current->chance, current->addon, current->where, current->holders, current->rate);
@@ -253,3 +232,4 @@ void searchRate(List *list, int rate)
     printf("Write anything for close correct option: ");
     getch();
 }
+
